@@ -1,8 +1,10 @@
 let db;
 // create a new db request for a "BudgetDB" database.
+const request = window.indexedDB.open("BudgetDB", 1);
 
 request.onupgradeneeded = function (event) {
   // create object store called "BudgetStore" and set autoIncrement to true
+  const toDoListStore = db.createObjectStore("toDoList", {keyPath: "listID"});
 };
 
 request.onsuccess = function (event) {
@@ -15,6 +17,7 @@ request.onsuccess = function (event) {
 
 request.onerror = function (event) {
   // log error here
+  console.log(event)
 };
 
 function saveRecord(record) {
